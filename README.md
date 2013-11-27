@@ -1,4 +1,4 @@
-# django_ejabberd_bridge
+# django_ejabberd_bridge [![Build Status](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge.png)](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge)
 
 It's a django app to integrate [ejabberd](http://www.ejabberd.im/) XMPP server with [Django](https://www.djangoproject.com/)
 

@@ -106,7 +106,7 @@ class Command(BaseCommand):
                 elif data[0] == "setpass":
                     success = self.setpass(data[1], data[2], data[3])
                 self.to_ejabberd(success)
-                if not options.get("run_forever", False):
+                if not options.get("run_forever", True):
                     break
         except Exception as e:
             self.logger.error("An error has occurred during eJabberd external authentication: %s" % e)
