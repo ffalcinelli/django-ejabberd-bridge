@@ -152,10 +152,10 @@ class AuthBridgeTestCase(TestCase):
         password = "new_password"
         self.assertFalse(self.cmd.setpass(username=username, server=self.srv, password=password))
 
-
     def _execute_cmd_handle(self, params):
         data = struct.pack(">H", len(params)) + params.encode("utf-8")
-        with patch("sys.stdin", StringIO(data.decode("utf-8"))), patch("sys.stdout", new_callable=StringIO) as stdout_mocked:
+        with patch("sys.stdin", StringIO(data.decode("utf-8"))), patch("sys.stdout",
+                                                                       new_callable=StringIO) as stdout_mocked:
             self.cmd.handle(params, run_forever=False)
         return stdout_mocked.getvalue()
 

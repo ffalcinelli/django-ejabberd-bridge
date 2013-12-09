@@ -1,4 +1,4 @@
-# django_ejabberd_bridge [![Build Status](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge.png)](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge)
+# django_ejabberd_bridge [![Build Status](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge.png)](https://travis-ci.org/ffalcinelli/django-ejabberd-bridge) [![Coverage Status](https://coveralls.io/repos/ffalcinelli/django-ejabberd-bridge/badge.png)](https://coveralls.io/r/ffalcinelli/django-ejabberd-bridge) 
 
 It's a django app to integrate [ejabberd](http://www.ejabberd.im/) XMPP server with [Django](https://www.djangoproject.com/)
 
@@ -6,14 +6,14 @@ Right now it just allows the ejabberd service to perform authentication against 
 
 ## Quick Start
 
-### To help me out
-
 
 Install django_ejabberd_bridge with the following
 
 ```
 $ python setup.py install
 ```
+
+TODO: add quick starts here...
 
 
 ## Install and startup eJabberd
@@ -25,7 +25,7 @@ $ apt-get -y install ejabberd
 $ service ejabberd restart
 ```
 
-whereas on OSX using homebrew
+whereas on OSX using [homebrew](http://brew.sh/)
 
 ```
 $ brew install ejabberd
