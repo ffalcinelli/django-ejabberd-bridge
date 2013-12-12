@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from io import StringIO
+import io
 import struct
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -138,11 +139,8 @@ class AuthBridgeTestCase(TestCase):
         password = "new_password"
         self.assertTrue(self.cmd.setpass(username=username, server=self.srv, password=password))
 
-        try:
-            user = get_user_model().objects.get(username=username)
-            self.assertTrue(user.check_password(password))
-        except Exception:
-            self.fail("Error retrieving user %s from test database" % username)
+        user = get_user_model().objects.get(username=username)
+        self.assertTrue(user.check_password(password))
 
     def test_setpass_does_not_exist(self):
         """
@@ -200,3 +198,13 @@ class AuthBridgeTestCase(TestCase):
         """
         params = "setpass:User:Server:Password"
         self.assertEqual('\x00\x02\x00\x00', self._execute_cmd_handle(params))
+
+    def test_handle_invalid_data(self):
+        """
+        Tests failing with invalid bytes argument
+        """
+        params = "foo bar"
+        data = struct.pack(">H", len(params) + 10) + params.encode("utf-8")
+        with patch("sys.stdin", io.BytesIO(data)), patch("sys.stdout", new_callable=StringIO) as stdout_mocked:
+            self.cmd.handle(params, run_forever=False)
+        self.assertEqual('\x00\x02\x00\x00', stdout_mocked.getvalue())
